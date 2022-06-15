@@ -1,0 +1,17 @@
+setwd("D:\\internsass")
+library(caret)
+library(class)
+social_network_train <- read.csv("social_network_train.csv")
+social_network_test <- read.csv("social_network_test.csv")
+str(social_network_train)
+str(social_network_test)
+social_network_train$Purchased=factor(social_network_train$Purchased)
+social_network_test$Purchased=factor(social_network_test$Purchased)
+str(social_network_train)
+str(social_network_test)
+summary(social_network_train)
+summary(social_network_test)
+predictedknn=knn(train=social_network_train[,-3],test=social_network_test[,-3],cl=social_network_train$Purchased,k=3)
+predictedknn
+conf=confusionMatrix(data=predictedknn,social_network_test$Purchased)
+conf
